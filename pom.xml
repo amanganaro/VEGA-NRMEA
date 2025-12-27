@@ -9,39 +9,38 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <properties>
-        <java.version>11</java.version>
-        <skipTests>true</skipTests>
-    </properties>
-
     <name>InSilico-NRMEA</name>
     <description>
-        NRMEA libraries for the inSilico project (VEGA etc) - Updated to OpenJDK 11 and CDK 2.3
+        NRMEA libraries for the VEGA project, implementing the core functionalities to run NRMEA models. It
+        contains the main model classes for a series of NRMEA models available in VEGA.
     </description>
 
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>maven-snapshots</id>
-            <url>http://195.231.76.108:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>maven-releases</id>
-            <url>http://195.231.76.108:8081/repository/maven-releases/</url>
-        </repository>
+    <properties>
+        <java.version>17</java.version>
+        <skipTests>true</skipTests>
+    </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>protoqsar-maven-releases</id>
+            <url>https://nexus.protoqsar.com/repository/maven-releases/</url>
+        </repository>
     </distributionManagement>
 
     <repositories>
         <repository>
-            <id>maven-public</id>
-            <url>http://195.231.76.108:8081/repository/maven-public/</url>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <!-- public repo hosted by ProtoQSAR, access with maven-public:maven-public -->
+            <id>protoqsar-maven-public</id>
+            <url>https://nexus.protoqsar.com/repository/maven-public/</url>
         </repository>
     </repositories>
 
-
     <dependencies>
-
 
         <dependency>
             <groupId>org.openscience.cdk</groupId>
@@ -52,7 +51,7 @@
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>Core</artifactId>
-            <version>1.3.18</version>
+            <version>1.3.19</version>
         </dependency>
 
     </dependencies>
@@ -71,9 +70,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <release>11</release>
+                    <source>17</source>
+                    <target>17</target>
+                    <release>17</release>
 
                 </configuration>
             </plugin>
@@ -107,35 +106,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-            <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.8</version>
-                <executions>
-                    <execution>
-                        <id>generate-docs</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <doctype>book</doctype>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework.restdocs</groupId>
-                        <artifactId>spring-restdocs-asciidoctor</artifactId>
-                        <version>LATEST</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
-
 
         </plugins>
     </build>
